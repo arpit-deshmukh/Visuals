@@ -6,6 +6,8 @@ import './App.css'
 import Authentication from './auth/Authentication';
 import { AuthProvider } from './contexts/AuthContext';
 import VideoMeet from './pages/VideoMeet';
+import HomeComponent from './pages/Home';
+import History from './pages/History';
 
 
 
@@ -22,9 +24,14 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage/>}/>
               <Route path="/auth" element={<Authentication/>}/>
-              <Route path="/:urls" element={<VideoMeet/>}/>
+              <Route path="/:url" element={<VideoMeet/>}/>
               
+              <Route path="/home" element={<HomeComponent/>}/>
+              <Route path="/history" element={<History/>}/>
               
+
+            //    <Route path='/home's element={<HomeComponent />} />
+            // <Route path='/history' element={<History />} />
 
             </Routes>
 

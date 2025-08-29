@@ -68,7 +68,7 @@ export default function SignInCard() {
               setFormState(0);
             }}
           >
-            Sign IN
+            Login
           </Button>
           <Button
             variant={formState === 1 ? "contained" : ""}

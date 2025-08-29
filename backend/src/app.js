@@ -21,7 +21,9 @@ app.use(cors());
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
+//versions 
 app.use("/api/v1/users", userRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("Server is running successfully!");

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 import '../App.css'
+import '../styles/LandingPage.css'
 
 export default function LandingPage() {
   return (
@@ -13,6 +14,8 @@ export default function LandingPage() {
         </div>
         <div className='navList'>
               <p>Join as Guest</p>
+               {/* <Link to={"/auth"}>Register</Link>
+               <Link to={"/auth"}>Register</Link> */}
               <p>Register</p>
               <p>Login</p>
 
