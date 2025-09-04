@@ -1,0 +1,40 @@
+.history-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    background-color: #999;
+}
+
+.home-button {
+    margin-bottom: 16px;
+}
+
+.history-card {
+    background-color: #eeeeee;
+    margin: 12px 0;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.history-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.history-code {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+.history-date {
+    font-size: 14px;
+    color: #777;
+}
+
+.no-history {
+    text-align: center;
+    color: #999;
+    margin-top: 40px;
+}

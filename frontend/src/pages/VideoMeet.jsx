@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import io from "socket.io-client";
-import { Badge, IconButton, TextField, Button } from '@mui/material';
+import { Badge, IconButton, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import VideocamOffIcon from '@mui/icons-material/VideocamOff'
 import styles from "../styles/videoComponent.module.css";
@@ -11,8 +12,8 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
 import server from '../environment';
+import { grey } from '@mui/material/colors';
 
-// const server_url = server;
 const server_url = server;
 
 var connections = {};
@@ -22,7 +23,6 @@ const peerConfigConnections = {
         { "urls": "stun:stun.l.google.com:19302" }
     ]
 }
-
 
 export default function VideoMeetComponent() {
 
@@ -383,14 +383,34 @@ export default function VideoMeetComponent() {
         return Object.assign(stream.getVideoTracks()[0], { enabled: false })
     }
 
+    // let handleVideo = () => {
+    //     setVideo(!video);
+    //     // getUserMedia();
+    // }
+    // let handleAudio = () => {
+    //     setAudio(!audio)
+    //     // getUserMedia();
+    // }
     let handleVideo = () => {
-        setVideo(!video);
-        // getUserMedia();
+  if (localVideoref.current && localVideoref.current.srcObject) {
+    const videoTrack = localVideoref.current.srcObject.getVideoTracks()[0];
+    if (videoTrack) {
+      videoTrack.enabled = !videoTrack.enabled; 
+      setVideo(videoTrack.enabled);            
     }
-    let handleAudio = () => {
-        setAudio(!audio)
-        // getUserMedia();
+  }
+}
+
+let handleAudio = () => {
+  if (localVideoref.current && localVideoref.current.srcObject) {
+    const audioTrack = localVideoref.current.srcObject.getAudioTracks()[0];
+    if (audioTrack) {
+      audioTrack.enabled = !audioTrack.enabled;
+      setAudio(audioTrack.enabled);             
     }
+  }
+}
+
 
     useEffect(() => {
         if (screen !== undefined) {
@@ -452,19 +472,54 @@ export default function VideoMeetComponent() {
 
             {askForUsername === true ?
 
-                <div>
+             
+<div 
+  style={{
+    height: '100vh',
+    width: '100vw',
+    backgroundColor: 'grey',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    padding: '20px',
+    boxSizing: 'border-box'
+  }}
+>
+  
+  <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <video 
+      ref={localVideoref} 
+      autoPlay 
+      muted 
+      style={{ width: '80%', height: 'auto', borderRadius: '8px', boxShadow: '0 0 15px rgba(0,0,0,0.5)' }} 
+    ></video>
+  </div>
+
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', paddingLeft: '50px'  }}>
+    <h2 style={{ marginBottom: '20px' }}>Join the Meeting</h2>
+    <TextField 
+      id="outlined-basic" 
+      label="Username" 
+      value={username} 
+      onChange={e => setUsername(e.target.value)} 
+      variant="outlined" 
+      style={{ marginBottom: '20px', width: '250px' }}
+    />
+    <Button 
+      variant="contained" 
+      onClick={connect} 
+      style={{ width: '120px', height: '40px' }}
+    >
+      Connect
+    </Button>
+  </div>
+</div>
 
 
-                    <h2>Enter into Lobby </h2>
-                    <TextField id="outlined-basic" label="Username" value={username} onChange={e => setUsername(e.target.value)} variant="outlined" />
-                    <Button variant="contained" onClick={connect}>Connect</Button>
-
-
-                    <div>
-                        <video ref={localVideoref} autoPlay muted></video>
-                    </div>
-
-                </div> :
+                
+                
+                :
 
 
                 <div className={styles.meetVideoContainer}>
@@ -491,7 +546,6 @@ export default function VideoMeetComponent() {
                             </div>
 
                             <div className={styles.chattingArea}>
-                              
                                 <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
                                 <Button variant='contained' onClick={sendMessage}>Send</Button>
                             </div>
@@ -546,6 +600,7 @@ export default function VideoMeetComponent() {
                         ))}
 
                     </div>
+      
 
                 </div>
 

@@ -1,7 +1,7 @@
 .meetVideoContainer {
     position: relative;
     height: 100vh;
-    background: rgb(1, 4, 48);
+    background: grey;
 }
 
 .meetUserVideo {
@@ -24,7 +24,7 @@
     font-size: 3rem;
 }
 
-.conferenceView { 
+/* .conferenceView { 
 
     display: flex;
     
@@ -37,6 +37,23 @@
     height: 20vh;
     min-width: 30vw;
     border-radius: 10px;
+    border-color: black;
+} */
+
+.conferenceView {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* auto-fit rows */
+  gap: 10px;
+  padding: 10px;
+}
+
+.conferenceView video {
+  width: 100%;
+  height: 40vh;
+  border-radius: 10px;
+  border: 2px solid black;
+  object-fit:contain;
+  background-color: rgb(62, 61, 61);
 }
 
 .chatRoom {
@@ -52,6 +69,7 @@
 .chatContainer {
     position: relative;
     height: 100%;
+    overflow-y: auto;  
 }
 
 

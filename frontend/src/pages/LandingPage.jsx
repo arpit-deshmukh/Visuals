@@ -1,43 +1,56 @@
 import React from 'react'
-import { Link } from "react-router-dom";
-
-import '../App.css'
-import '../styles/LandingPage.css'
-
+import "../App.css"
+import { Link, useNavigate } from 'react-router-dom'
 export default function LandingPage() {
-  return (
-    <div className='landingPageContainer'>
-     
-      <nav className='navbar1'>
-        <div className='navHeader'>
-          <h2>Visuals</h2>
-        </div>
-        <div className='navList'>
-              <p>Join as Guest</p>
-               {/* <Link to={"/auth"}>Register</Link>
-               <Link to={"/auth"}>Register</Link> */}
-              <p>Register</p>
-              <p>Login</p>
 
-              
-        </div>
-      </nav>
 
-      <div className="landingMainContainer">
-          <div >
-            <h1><span style={{color:"#ff9839"}}>Connect</span> with your<br/> Loved once</h1><br/>
-            <p>Cover distance with visuals</p>
+    const router = useNavigate();
 
-            
-            <div className='getStarted'>
-              <Link to={"/auth"}>Get Started</Link>
+    return (
+        <div className='landingPageContainer'>
+            <nav>
+                <div className='navHeader'>
+                    <h2>Visuals</h2>
+                </div>
+                <div className='navlist'>
+                    <p onClick={() => {
+                        router("/guest123")
+                    }}>Join as Guest</p>
+                    <p onClick={() => {
+                        router("/auth")
+
+                    }}>Register</p>
+                    <div onClick={() => {
+                        router("/auth")
+
+                    }} role='button'>
+                        <p>Login</p>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div className="landingMainContainer">
+                <div>
+                    <h2><span style={{ color: "#7cb6d1ff" }}></span> Connect, collaborate, and create moments that matter</h2>
+
+                    {/* <p>Bringing people together to <br/>meet  share and innovate and </p> */}
+                   
+                    <div role='button'>
+                        <Link to={"/auth"}>Get Started</Link>
+                    </div>
+                    <br/>
+                     <p>Every call sparks discussion, creation, and change</p>
+                </div>
+                <div>
+
+                    <img src="/mobile.png" alt="" />
+
+                </div>
             </div>
-          </div>
-          <div>
-            <img src='/mobile.png' alt='img'/>
-          </div>
 
-      </div>
-    </div>
-  )
+
+
+        </div>
+    )
 }
