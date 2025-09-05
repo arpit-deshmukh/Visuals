@@ -477,7 +477,9 @@ let handleAudio = () => {
   style={{
     height: '100vh',
     width: '100vw',
-    backgroundColor: 'grey',
+    backgroundColor: 'black',
+    // background:url("/public/background.png") ,
+     backgroundImage: 'url("/bg_2.png")',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -487,25 +489,45 @@ let handleAudio = () => {
   }}
 >
   
+
   <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <video 
-      ref={localVideoref} 
-      autoPlay 
-      muted 
-      style={{ width: '80%', height: 'auto', borderRadius: '8px', boxShadow: '0 0 15px rgba(0,0,0,0.5)' }} 
-    ></video>
-  </div>
+  <video
+    ref={localVideoref}
+    autoPlay
+    muted
+    style={{
+      width: '80%',
+      height: 'auto',
+      borderRadius: '16px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      backdropFilter: 'blur(8px)',
+      boxShadow: '0 8px 25px rgba(0,0,0,0.4)'
+    }}
+  ></video>
+</div>
+
 
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', paddingLeft: '50px'  }}>
     <h2 style={{ marginBottom: '20px' }}>Join the Meeting</h2>
-    <TextField 
-      id="outlined-basic" 
-      label="Username" 
-      value={username} 
-      onChange={e => setUsername(e.target.value)} 
-      variant="outlined" 
-      style={{ marginBottom: '20px', width: '250px' }}
-    />
+  
+    <TextField
+  id="outlined-basic"
+  label="Username"
+  value={username}
+  onChange={e => setUsername(e.target.value)}
+  variant="outlined"
+  InputLabelProps={{ style: { color: 'white' } }}
+  InputProps={{ style: { color: 'white' } }}
+  sx={{
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': { borderColor: 'white' },
+      '&:hover fieldset': { borderColor: 'white' },
+      '&.Mui-focused fieldset': { borderColor: 'white' }
+    }
+  }}
+  style={{ marginBottom: '20px', width: '250px' }}
+/>
+
     <Button 
       variant="contained" 
       onClick={connect} 
@@ -546,6 +568,7 @@ let handleAudio = () => {
                             </div>
 
                             <div className={styles.chattingArea}>
+                            
                                 <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
                                 <Button variant='contained' onClick={sendMessage}>Send</Button>
                             </div>

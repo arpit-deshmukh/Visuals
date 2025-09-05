@@ -55,7 +55,7 @@ function HomeComponent() {
             <div className="meetContainer">
                 <div className="leftPanel">
                     <div>
-                        <h2>Providing Quality Video Call </h2>
+                        <h2>Seamless Video. Anytime, Anywhere </h2>
 
                         <div style={{ display: 'flex', gap: "10px" }}>
 

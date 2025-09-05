@@ -7,7 +7,7 @@ const ColorModeContext = createContext();
 export const useColorMode = () => useContext(ColorModeContext);
 
 export default function AppTheme({ children }) {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState('dark');
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
